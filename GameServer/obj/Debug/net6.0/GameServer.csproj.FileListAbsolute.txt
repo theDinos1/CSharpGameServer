@@ -1,0 +1,15 @@
+C:\backup\OwnProject\GameServer\GameServer\GameServer\bin\Debug\net6.0\GameServer.exe
+C:\backup\OwnProject\GameServer\GameServer\GameServer\bin\Debug\net6.0\GameServer.deps.json
+C:\backup\OwnProject\GameServer\GameServer\GameServer\bin\Debug\net6.0\GameServer.runtimeconfig.json
+C:\backup\OwnProject\GameServer\GameServer\GameServer\bin\Debug\net6.0\GameServer.dll
+C:\backup\OwnProject\GameServer\GameServer\GameServer\bin\Debug\net6.0\GameServer.pdb
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.csproj.AssemblyReference.cache
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.AssemblyInfoInputs.cache
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.AssemblyInfo.cs
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.csproj.CoreCompileInputs.cache
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.dll
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\refint\GameServer.dll
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.pdb
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.genruntimeconfig.cache
+C:\backup\OwnProject\GameServer\GameServer\GameServer\obj\Debug\net6.0\ref\GameServer.dll
