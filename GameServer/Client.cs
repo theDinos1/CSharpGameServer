@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 
 namespace GameServer
 {
@@ -42,10 +36,23 @@ namespace GameServer
                 _RecieveBuffer = new byte[DataBufferSize];
 
                 _Stream.BeginRead(_RecieveBuffer, 0, DataBufferSize, RecieveCallback, null);
-
-                // TODO: send welcome packet
+                
+                ServerSend.Welcome(_Id, "Welcome to server!");
             }
-
+            public void SendData(Packet _packet)
+            {
+                try
+                {
+                    if (Socket != null)
+                    {
+                        _Stream.BeginWrite(_packet.ToArray(), 0, _packet.Length(), null, null);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error sending data to player {_Id} via TCP: {ex}");
+                }
+            }
             private void RecieveCallback(IAsyncResult _result)
             {
                 try
@@ -59,10 +66,9 @@ namespace GameServer
 
                     byte[] data = new byte[byteLength];
                     Array.Copy(_RecieveBuffer, data, byteLength);
-
                     // TODO: handle data
 
-                    _Stream.BeginRead(_RecieveBuffer,0,DataBufferSize, RecieveCallback, null);
+                    _Stream.BeginRead(_RecieveBuffer, 0, DataBufferSize, RecieveCallback, null);
                 }
                 catch (Exception ex)
                 {
