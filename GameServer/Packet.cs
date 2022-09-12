@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace GameServer
 {
     /// <summary>Sent from server to client.</summary>
     public enum ServerPackets
     {
-        welcome = 1
+        welcome = 1,
+        sendPackage = 2,
+        udpTest = 3,
     }
 
     /// <summary>Sent from client to server.</summary>
     public enum ClientPackets
     {
-        welcomeReceived = 1
+        welcomeReceived = 1,
+        sendPackageReceived = 2,
+        udpTestReceived = 3,
     }
 
     public class Packet : IDisposable
