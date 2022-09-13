@@ -37,7 +37,7 @@ namespace GameServer
             TcpClient client = _TcpListener.EndAcceptTcpClient(result);
             _TcpListener.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null);
 
-            Console.WriteLine($"incoming connection from {client.Client.RemoteEndPoint}");
+            Console.WriteLine($"Incoming connection from {client.Client.RemoteEndPoint} via TCP");
 
             for (int i = 1; i <= MaxPlayers; i++)
             {
@@ -57,7 +57,7 @@ namespace GameServer
             {
                 IPEndPoint clientEndpoint = new IPEndPoint(IPAddress.Any, 0);
                 byte[] data = _UdpListener.EndReceive(result, ref clientEndpoint);
-                Console.WriteLine($"UDP Receive from {clientEndpoint}");
+                Console.WriteLine($"Incoming connection from {clientEndpoint.Address}:{clientEndpoint.Port} via UDP");
                 _UdpListener.BeginReceive(UDPReceiveCallback, null);
 
                 if (data.Length < 4)
@@ -119,8 +119,7 @@ namespace GameServer
             }
             PacketHandlers = new Dictionary<int, PacketHandler>()
             {
-                { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
-                { (int)ClientPackets.udpTestReceived, ServerHandle.UDPTestReceived },
+                { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived }
             };
         }
     }

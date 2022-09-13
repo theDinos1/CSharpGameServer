@@ -2,28 +2,6 @@
 {
     class ServerSend
     {
-
-        public static void Welcome(int _tcpClient, string _msg)
-        {
-            using (Packet packet = new Packet((int)ServerPackets.welcome))
-            {
-                packet.Write(_msg);
-                packet.Write(_tcpClient);
-
-                SendTCPData(_tcpClient, packet);
-            }
-        }
-
-        public static void UdpTest(int toClient)
-        {
-            Console.WriteLine("UdpTest func!");
-            using (Packet packet = new Packet((int)ServerPackets.udpTest))
-            {
-                packet.Write("A test packet for UDP.");
-                SendUDPData(toClient, packet);
-            }
-        }
-
         public static void SendPackage(int _tcpClient, string _msg)
         {
             using (Packet packet = new Packet((int)ServerPackets.sendPackage))
@@ -65,7 +43,6 @@
         private static void SendUDPData(int toClient, Packet packet)
         {
             packet.WriteLength();
-            Console.WriteLine($"to cliend id: {toClient}");
             Server.Clients[toClient].Udp.SendData(packet);
         }
         private static void SendUDPDataToAll(Packet packet)
@@ -88,5 +65,32 @@
                 }
             }
         }
+
+        #region Packets
+        public static void Welcome(int _tcpClient, string _msg)
+        {
+            using (Packet packet = new Packet((int)ServerPackets.welcome))
+            {
+                packet.Write(_msg);
+                packet.Write(_tcpClient);
+
+                SendTCPData(_tcpClient, packet);
+            }
+        }
+
+        public static void SpawnPlayer(int toClient, Player player)
+        {
+            using (Packet packet = new Packet((int)ServerPackets.spawnPlayer))
+            {
+                packet.Write(player.Id);
+                packet.Write(player.Username);
+                packet.Write(player.Position);
+                packet.Write(player.Rotation);
+
+                SendTCPData(toClient, packet);
+            }
+        }
+
+        #endregion
     }
 }

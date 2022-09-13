@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6/eKBDYE9DNvLvW381SS4vx3ImkhhQBrxOg0J68OgJbc3mSbY0z99GvAF16eyUIegjVWi4ICmxZSOCni3ZJDpg==",
+  "dgSpecHash": "/JGquHR2ZZGgq/L2BoZpWFqxhJVn+TqyiBH6kIACxRhdVb6jmbIs4VHQakT6Pi5N1CrtQgZS8eRaULkL+u9hcg==",
   "success": true,
   "projectFilePath": "C:\\backup\\OwnProject\\GameServer\\GameServer\\GameServer\\GameServer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Thanapoom\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

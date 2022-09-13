@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using System.Numerics;
 
 namespace GameServer
 {
@@ -7,6 +8,7 @@ namespace GameServer
     {
         public static int DataBufferSize = 4096;
         public int Id;
+        public Player Player;
         public TCP Tcp;
         public UDP Udp;
 
@@ -43,7 +45,7 @@ namespace GameServer
                 _Stream.BeginRead(_RecieveBuffer, 0, DataBufferSize, RecieveCallback, null);
 
                 ServerSend.Welcome(_Id, "Welcome to server!");
-                ServerSend.SendPackage(_Id, "Kuy rai i sus");
+                //ServerSend.SendPackage(_Id, "Kuy rai i sus");
             }
             public void SendData(Packet _packet)
             {
@@ -108,7 +110,7 @@ namespace GameServer
                         using (Packet packet = new Packet(packetBytes))
                         {
                             int packetId = packet.ReadInt();
-                            Console.WriteLine($"Received package id: {packetId}");
+                            Console.WriteLine($"Received package id: {packetId} via TCP");
                             Server.PacketHandlers[packetId](_Id, packet);
                         }
                     });
@@ -144,7 +146,6 @@ namespace GameServer
             public void Connect(IPEndPoint endPoint)
             {
                 EndPoint = endPoint;
-                ServerSend.UdpTest(_Id);
             }
 
             public void SendData(Packet packet)
@@ -162,10 +163,35 @@ namespace GameServer
                     using (Packet packet = new Packet(packetBytes))
                     {
                         int packetId = packet.ReadInt();
-                        Console.WriteLine($"packet id: {packetId}");
+                        Console.WriteLine($"Received packet id: {packetId} via UDP");
                         Server.PacketHandlers[packetId](_Id, packet);
                     }
                 });
+            }
+        }
+
+        public void SendIntoGame(string playerName)
+        {
+            Player = new Player(Id, playerName, new Vector3(0, 0, 0));
+
+            foreach (Client client in Server.Clients.Values)
+            {
+                if(client.Player != null)
+                {
+                    if (client.Id != Id)
+                    {
+                        ServerSend.SpawnPlayer(Id, client.Player);
+                    }
+                }
+                
+            }
+
+            foreach (Client client in Server.Clients.Values)
+            {
+                if(client.Player != null)
+                {
+                    ServerSend.SpawnPlayer(client.Id, Player);
+                }
             }
         }
     }
